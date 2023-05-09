@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update contact</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container">
+	
+		<div class="row">
+			<h2>Update contact</h2>
+		</div>
+	
+		<form th:action="@{/addOrUpdate}" th:object="${contact}" method="POST">
+		
+			<input type="hidden" th:field="*{id}"/>
+		
+			<div class="form-group">
+				<label>Name</label> <input type="text" th:field="*{nombre}" class="form-control"
+					id="txtNombre" name="nombre" placeholder="Enter name contact">
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+					
+			</div>
+			<div class="form-group">
+				<label>Email address</label> <input type="email" th:field="*{email}"
+					class="form-control" id="txtEmail" name="email" aria-describedby="emailHelp"
+					placeholder="Enter email"> <small id="emailHelp"
+					class="form-text text-muted">We'll never share email's with
+					anyone else.</small>
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+			</div>
+			<div class="form-group">
+				<label>Date of bird</label> <input type="date" th:field="*{fechaNacimiento}" class="form-control"
+					id="txtDate" name="date" >
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>	
+
+			</div>
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+</body>
+</html>
